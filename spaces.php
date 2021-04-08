@@ -150,10 +150,11 @@ class Space {
   /*
   Uploads text.
   */
-  function upload($text, $saveAs, $privacy = "private") {
+  function upload($text, $saveAs, $privacy = "private", $params = array()) {
     if($privacy == "public") { $privacy = "public-read"; }
+    $options = array('params' => $params);
 
-    return SpacesResult($this->s3->upload($this->name, $saveAs, $text, $privacy));
+    return SpacesResult($this->s3->upload($this->name, $saveAs, $text, $privacy, $options));
   }
 
 
@@ -161,12 +162,13 @@ class Space {
   /*
   Uploads a file.
   */
-  function uploadFile($filePath, $saveAs = "", $privacy = "private") {
+  function uploadFile($filePath, $saveAs = "", $privacy = "private", $params = array()) {
     if(empty($saveAs)) { $saveAs = $filePath; }
     if($privacy == "public") { $privacy = "public-read"; }
+    $options = array('params' => $params);
 
     $content = fopen($filePath, "r");
-    $result = $this->s3->upload($this->name, $saveAs, $content, $privacy);
+    $result = $this->s3->upload($this->name, $saveAs, $content, $privacy, $options);
 
     fclose($content);
     return SpacesResult($result);

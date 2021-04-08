@@ -159,10 +159,11 @@ These are all the functions a Space instance (From `$spaces->space("my-new-space
 $my_space = Spaces("ACCESS KEY", "SECRET KEY")->space("my_space", "nyc3");
 
 //Upload a local stored file.
-$my_space->uploadFile("path/to/my/file.txt", "path/on/space.txt", "private");
+$my_space->uploadFile("path/to/my/file.txt", "path/on/space.txt", "private", array('ContentDisposition' => 'inline'));
 ```
 * The second (Save as) argument is optional. Spaces-API attempts to use the original file path as the path on your Space if no save as path is provided.
 * The third argument (File privacy) is optional. It defaults to private.
+* The fourth argument (Parameters) is optional. It defaults to an empty array.
 * Returns available info on the file.
 
 &nbsp;
@@ -171,10 +172,11 @@ $my_space->uploadFile("path/to/my/file.txt", "path/on/space.txt", "private");
 $my_space = Spaces("ACCESS KEY", "SECRET KEY")->space("my_space", "nyc3");
 
 //Upload a local stored file.
-$my_space->upload("my content", "path/on/space.txt", "private");
+$my_space->upload("my content", "path/on/space.txt", "private", array('ContentDisposition' => 'inline'));
 ```
 * The first argument (Content) can be a string, but it can also be a StreamInterface or PHP stream resource.
 * The third argument (File privacy) is optional. It defaults to private.
+* The fourth argument (Parameters) is optional. It defaults to an empty array.
 * Returns available info on the file.
 
 &nbsp;
